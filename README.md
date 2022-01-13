@@ -82,10 +82,12 @@ featureCounts -p -a reference_genome.chr+ERCC.gtf -s 2 -t CDS -B -C -g gene_id -
 ```
   
 3.5 Differential expression analysis - R Bioconductor package 'DESeq2'
+
 -R script-
  
 3.6 Functional enrichment analysis - R Bioconductor package 'clusterProfiler'
-- R script-
+
+-R script-
 
 3.7 Gene level TPM estimation - Kallisto
 
