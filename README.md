@@ -3,9 +3,9 @@
 This repository contains a customised data analysis pipeline that facilitates the incorporation of ERCC spike-in control for RNA-seq data analysis (For paired-end short read - Illumina data). 
 
 ### Table of contents 
-1. [Overview of the pipeline](overview-of-the-pipeline)
-2. [Software installation](software-installation)
-3. [How to run - example dataset](how-to-run-example-dataset)
+1. [Overview of the pipeline](#overview-of-the-pipeline)
+2. [Software installation](#software-installation)
+3. [How to run - example dataset](#how-to-run-example-dataset)
   
      3.1 Quality check of raw fastq files - FastQC/MultiQC
   
