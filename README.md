@@ -39,7 +39,7 @@ The required software/command-line tools were installed via conda on Linux.
 conda env create -n chip-seq -f environment.yml
 ```
 
-### How to run - example dataset
+### How to run an example dataset
 
 The folder 'example dataset' contains 12 RNA-seq samples, 4 biological replicates per each stage (WT, PreM and Mal).
 These files contain a subset of reads 1 million.  
