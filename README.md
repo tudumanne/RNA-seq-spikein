@@ -25,7 +25,7 @@ This repository contains a customised data analysis pipeline that facilitates th
 ### Overview of the pipeline
 
 This pipeline was run on an HPC (high-performance computing) system based on CentOS (Linux). R based analysis was carried out in RStudio/MacOS Catalina.
-The 'Scripts' folder contains template bash scripts and example Snakemake workflows.
+The 'Scripts' folder contains template bash scripts for the analysis.
 
 ![alt text](https://github.com/tudumanne/RNA-seq-spikein/files/7829892/Picture.1.pdf)
 
