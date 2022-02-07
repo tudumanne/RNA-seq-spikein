@@ -20,6 +20,8 @@ This repository contains a customised data analysis pipeline that facilitates th
      3.6 Functional enrichment analysis - R Bioconductor package 'clusterProfiler'
 
      3.7 Gene level TPM estimation - Kallisto
+
+     3.8 Integration of RNA-seq and ChIP-seq data
   
 
 ### Overview of the pipeline
@@ -94,4 +96,6 @@ featureCounts -p -a reference_genome.chr+ERCC.gtf -s 2 -t CDS -B -C -g gene_id -
 ```console
 kallisto quant -i Mus_musculus.GRCm38.cdna.idx -o /sample {sample}_R1.fastq.gz {sample}_R2.fastq.gz
 ```
+3.8 Integration of RNA-seq and ChIP-seq data
 
+-R scripts-
