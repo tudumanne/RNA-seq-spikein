@@ -19,32 +19,39 @@ This repository contains a customised data analysis pipeline that facilitates th
  
      3.6 Functional enrichment analysis - R Bioconductor package 'clusterProfiler'
 
-     3.7 Gene level TPM estimation - Kallisto
+     3.7 Gene level TPM estimation - Kallisto (raw counts normalised to gene length - for within sample comparisons)
 
-     3.8 Integration of RNA-seq and ChIP-seq data
+     3.8 Integration of RNA-seq and ChIP-seq data - R
   
 
 ### Overview of the pipeline
 
-This pipeline was run on an HPC (high-performance computing) system based on CentOS (Linux). R based analysis was carried out in RStudio/MacOS Catalina.
-The 'Scripts' folder contains template bash scripts for the analysis.
+This pipeline (3.1-3.4, 3.7) was run on an HPC (high-performance computing) system based on CentOS (Linux). R based analysis was carried out in RStudio/MacOS Catalina.
 
-![alt text](https://github.com/tudumanne/RNA-seq-spikein/files/7829892/Picture.1.pdf)
+The 'scripts' folder contains template bash scripts for the analysis and relevant R scripts. 
+
+
+
+![alt text](https://github.com/tudumanne/RNA-seq-spikein/files/8024411/rna-seq.pdf)
+
 
 
 ### Software installation 
 
-The required software/command-line tools were installed via conda on Linux. 
-(Miniconda https://docs.conda.io/en/latest/miniconda.html)
+The required command-line tools were installed via conda on Linux. 
+
+Miniconda documentation https://docs.conda.io/en/latest/miniconda.html
+
+'environment.yaml' file is used to define the tools that are required to be installed in to the conda environment named 'rna-seq'.
 
 ```console
-conda env create -n chip-seq -f environment.yml
+conda env create -n rna-seq -f environment.yaml
 ```
 
 ### How to run an example dataset
 
 The folder 'example dataset' contains 12 RNA-seq samples, 4 biological replicates per each stage (WT, PreM and Mal).
-These files contain a subset of reads 1 million.  
+Example data contain a subset of reads from each sample (1 million paired end reads).  
   
 3.1 Quality check of raw fastq files - FastQC/MultiQC
 
@@ -55,9 +62,13 @@ multiqc fastqc/
   
 3.2 Read alignment, processing and post-alignment quality check - HISAT2, Samtools and BamQC/MultiQC
 
+- For RNA-seq analysis the custom, manually masked reference genome created (https://github.com/tudumanne/custom-reference-mouse) was utilised with ERCC spike-in sequences (https://assets.thermofisher.com/TFS-Assets/LSG/manuals/ERCC92.zip) additionally incorporated.
+
 ```console
 hisat2-build reference_genome.fa reference_genome+rDNA+ERCC
+
 hisat2-align -q -x reference_genome+rDNA+ERCC -1 {sample}_R1.fastq -2 {sample}_R2.fastq --no-spliced-alignment --rna-strandness RF --time --no-unal | samtools view -bS > {sample}.bam
+
 samtools sort {sample}.bam > {sample}_sorted.bam
 samtools index {sample}_sorted.bam
 ```
@@ -91,11 +102,12 @@ featureCounts -p -a reference_genome.chr+ERCC.gtf -s 2 -t CDS -B -C -g gene_id -
 
 -R script-
 
-3.7 Gene level TPM estimation - Kallisto
+3.7 Gene level TPM estimation - Kallisto (raw counts normalised to gene length - for within sample comparisons)
 
 ```console
 kallisto quant -i Mus_musculus.GRCm38.cdna.idx -o /sample {sample}_R1.fastq.gz {sample}_R2.fastq.gz
 ```
+
 3.8 Integration of RNA-seq and ChIP-seq data
 
--R scripts-
+-R scripts 'integrate-matrix.R' and 'integrate-upset.R'-
