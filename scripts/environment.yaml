@@ -1,0 +1,11 @@
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - samtools =1.11
+  - hisat2=2.2.1
+  - subread=2.0.1
+  - deeptools =3.4.3
+  - fastqc =0.11.9
+  - qualimap =2.2.2
+  - multiqc =1.11
